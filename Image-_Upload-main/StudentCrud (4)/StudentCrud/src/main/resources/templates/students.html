@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title> project System</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class ="container">
+  <div class = "row">
+    <h1 style="font-family: 'Times New Roman'"> Project List  </h1>
+  </div>
+
+  <div class = "row">
+    <div class = "col-lg-3">
+      <a th:href = "@{/students/new}" class = "btn btn-dark btn-sm mb-3"> Add project</a>
+    </div>
+  </div>
+  <table class = "table table-bordered">
+    <thead class = "table-dark">
+    <tr>
+      <th> ID</th>
+      <th> description</th>
+      <th> damage date </th>
+      <th> image </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="student : ${students}">
+      <td th:text="${student.id}"></td>
+      <td>
+        <img th:if="${student.imageName != null}"
+             th:src="@{'/Users/warunapradeep/Downloads/Image-_Upload-main/images' + ${student.id} + '/' + ${student.imageName}}"
+             alt="" srcset="">
+      </td>
+      <td th:text="${student.username}"></td>
+      <td align="center">
+        <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-dark">Update</a>
+        <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-dark">Delete</a>
+      </td>
+    </tr>
+
+
+    </tbody>
+
+  </table>
+
+</div>
+</body>
+</html>
